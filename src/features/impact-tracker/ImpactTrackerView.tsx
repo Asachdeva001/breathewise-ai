@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Award, Leaf, Wind, ShieldCheck, TreePine, Clock, HelpCircle, CheckCircle2, ChevronRight } from 'lucide-react';
+import { Award, Leaf, Wind, TreePine, Clock, HelpCircle, CheckCircle2 } from 'lucide-react';
 import { ImpactSummary } from '../../../shared/types.js';
 
 interface ImpactTrackerViewProps {

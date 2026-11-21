@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Home, Sparkles, Fan, Droplets, Flame, CheckCircle, ShieldCheck, ArrowRight, Layers } from 'lucide-react';
+import React from 'react';
+import { Home, Sparkles, Fan, Droplets, Flame, CheckCircle } from 'lucide-react';
 import { IndoorHack } from '../../../shared/types.js';
 
 interface IndoorOptimizerViewProps {
@@ -11,7 +11,6 @@ export const IndoorOptimizerView: React.FC<IndoorOptimizerViewProps> = ({
   indoorHacks,
   onLogAction,
 }) => {
-  const [activeTab, setActiveTab] = useState<'all' | 'diy_fan' | 'cleaning' | 'cooking'>('all');
 
   const getCategoryIcon = (cat: string) => {
     switch (cat) {

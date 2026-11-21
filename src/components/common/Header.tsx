@@ -31,7 +31,6 @@ const SUPPORTED_CITIES = [
 export const Header: React.FC<HeaderProps> = ({
   currentCity,
   onCityChange,
-  telemetry,
   isDemo,
   onToggleDemo,
   onOpenSettings,

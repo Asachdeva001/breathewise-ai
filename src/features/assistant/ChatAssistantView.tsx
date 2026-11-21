@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Send, Sparkles, Bot, User, ShieldAlert, CornerDownLeft, RefreshCw } from 'lucide-react';
+import { Send, Bot, User, ShieldAlert, RefreshCw } from 'lucide-react';
 import { AqiTelemetry, ChatMessage } from '../../../shared/types.js';
 
 interface ChatAssistantViewProps {

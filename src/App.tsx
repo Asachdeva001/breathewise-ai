@@ -6,8 +6,6 @@ import {
   Leaf,
   Bot,
   Award,
-  Sparkles,
-  AlertTriangle,
 } from 'lucide-react';
 import { Header } from './components/common/Header.js';
 import { Footer } from './components/common/Footer.js';

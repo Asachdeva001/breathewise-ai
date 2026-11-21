@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, Users, Home, Shield, Car, Heart, Check, Sparkles } from 'lucide-react';
+import { X, Home, Shield, Car, Heart, Check, Sparkles } from 'lucide-react';
 import { CommuteMode, HomeType, HouseholdVulnerability, UserProfile } from '../../../shared/types.js';
 
 interface OnboardingModalProps {
@@ -30,7 +30,7 @@ export const OnboardingModal: React.FC<OnboardingModalProps> = ({
     profile?.primaryCommute || 'personal_car'
   );
   const [distanceKm, setDistanceKm] = useState<number>(profile?.averageCommuteDistanceKm || 15);
-  const [exercisePref, setExercisePref] = useState<'morning' | 'afternoon' | 'evening' | 'indoor_only'>(
+  const [exercisePref] = useState<'morning' | 'afternoon' | 'evening' | 'indoor_only'>(
     profile?.exercisePreference || 'morning'
   );
 

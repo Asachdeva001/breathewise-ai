@@ -1,5 +1,5 @@
 import React from 'react';
-import { Sun, Sunset, Moon, Sunrise, CheckCircle, ShieldAlert, Award, AlertTriangle, ArrowRight, HelpCircle } from 'lucide-react';
+import { Sun, Sunset, Moon, Sunrise, CheckCircle, Award, ArrowRight, HelpCircle } from 'lucide-react';
 import { RecommendationResponse, RoutineSlot } from '../../../shared/types.js';
 
 interface DailyRoutineViewProps {

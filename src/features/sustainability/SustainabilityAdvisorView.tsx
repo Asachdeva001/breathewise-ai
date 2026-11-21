@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Leaf, Car, Train, ArrowRight, CheckCircle, ShieldCheck, Flame, Zap, Award } from 'lucide-react';
+import { Leaf, Car, ArrowRight, Flame, Zap } from 'lucide-react';
 import { CommuteMode, SustainableAlternative } from '../../../shared/types.js';
 
 interface SustainabilityAdvisorViewProps {
