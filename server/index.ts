@@ -43,7 +43,7 @@ export function createApp() {
 
   // In production, serve compiled static React assets from /dist
   if (env.NODE_ENV === 'production') {
-    const distPath = path.resolve(__dirname, '../dist');
+    const distPath = path.resolve(process.cwd(), 'dist');
     app.use(express.static(distPath));
 
     // Client-side routing fallback
