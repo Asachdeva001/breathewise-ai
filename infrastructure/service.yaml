@@ -1,0 +1,50 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: breathewise-ai
+  labels:
+    cloud.google.com/location: us-central1
+  annotations:
+    run.googleapis.com/ingress: all
+spec:
+  template:
+    metadata:
+      annotations:
+        autoscaling.knative.dev/minScale: "0"
+        autoscaling.knative.dev/maxScale: "10"
+        run.googleapis.com/execution-environment: gen2
+    spec:
+      containerConcurrency: 80
+      timeoutSeconds: 300
+      serviceAccountName: breathewise-service
+      containers:
+        - image: us-central1-docker.pkg.dev/PROJECT_ID/breathewise-repo/breathewise-ai:latest
+          ports:
+            - name: http1
+              containerPort: 8080
+          resources:
+            limits:
+              cpu: "1"
+              memory: 512Mi
+          env:
+            - name: NODE_ENV
+              value: "production"
+            - name: GOOGLE_CLOUD_PROJECT
+              value: "PROJECT_ID"
+            - name: VERTEX_AI_MODEL_ID
+              value: "gemini-1.5-flash"
+            - name: FIRESTORE_MODE
+              value: "firestore"
+          startupProbe:
+            httpGet:
+              path: /api/health
+              port: 8080
+            initialDelaySeconds: 2
+            periodSeconds: 5
+            failureThreshold: 3
+          livenessProbe:
+            httpGet:
+              path: /api/health
+              port: 8080
+            periodSeconds: 30
+            timeoutSeconds: 3
