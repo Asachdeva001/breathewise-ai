@@ -2,6 +2,7 @@
 
 > **Challenge Vertical:** Urban Air Quality Assistant  
 > **Challenge Goal:** Create a GenAI-powered assistant that helps families and communities navigate severe winter smog and urban air pollution.  
+> **Live Cloud Run URL:** [https://breathewise-ai-648342438669.us-central1.run.app](https://breathewise-ai-648342438669.us-central1.run.app)  
 > **Repository:** Single Branch (`main`) | Clean Size (<10 MB) | WCAG 2.1 AA Compliant  
 
 ---
