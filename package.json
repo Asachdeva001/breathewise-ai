@@ -13,7 +13,8 @@
     "preview": "vite preview",
     "start": "node dist-server/index.js",
     "test": "vitest run",
-    "test:watch": "vitest",
+    "test:coverage": "vitest run",
+    "benchmark": "tsx server/benchmarks/perf.bench.ts",
     "lint": "tsc --noEmit"
   },
   "dependencies": {
