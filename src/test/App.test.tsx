@@ -124,8 +124,9 @@ describe('Frontend App Shell Integration Tests', () => {
     expect(screen.getByText(/Breathe Smarter\. Live Better\./i)).toBeInTheDocument();
 
     expect(screen.getByRole('tab', { name: /AQI Intelligence/i })).toBeInTheDocument();
-    expect(screen.getByRole('tab', { name: /Daily Routine/i })).toBeInTheDocument();
+    expect(screen.getByRole('tab', { name: /Family Routines/i })).toBeInTheDocument();
     expect(screen.getByRole('tab', { name: /Indoor Optimizer/i })).toBeInTheDocument();
+    expect(screen.getByRole('tab', { name: /Community Smog Defense/i })).toBeInTheDocument();
     expect(screen.getByRole('tab', { name: /Sustainable Living/i })).toBeInTheDocument();
     expect(screen.getByRole('tab', { name: /AI Assistant/i })).toBeInTheDocument();
     expect(screen.getByRole('tab', { name: /Impact Tracker/i })).toBeInTheDocument();

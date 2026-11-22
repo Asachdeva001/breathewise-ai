@@ -178,6 +178,24 @@ function generateDeterministicAssistantReply(
       `• **Elderly:** Particulate PM2.5 penetrates into the bloodstream and triggers systemic vascular inflammation. Limit early morning walks when ground-level smog is densest.`;
   }
 
+  // Question: Community Action / RWA / Neighborhood / Open Burning
+  if (q.includes('community') || q.includes('society') || q.includes('rwa') || q.includes('neighborhood') || q.includes('burning')) {
+    return `### Community & Neighborhood Smog Defense Blueprint\n\n` +
+      `Individual families cannot solve winter smog in isolation. In **${category} (AQI ${aqi})** conditions, apartment complexes and neighborhoods should immediately implement these 4 collective defense measures:\n\n` +
+      `1. **Enforce Strict Zero-Open-Burning Protocol:**\n` +
+      `   • Prohibit burning of dry fallen leaves, garden clippings, and waste across society premises.\n` +
+      `   • Distribute electric convection/oil heaters and heavy blankets to night security guards and gardeners instead of allowing wood/trash fires.\n` +
+      `   • Report open burning via the Sameer App, Delhi Green App, or Municipal helpline 311 / 1800-180-1817.\n\n` +
+      `2. **Establish a Society Clean Air Sanctuary:**\n` +
+      `   • Convert your society clubhouse, library, or indoor gym into a shared Clean Air Sanctuary equipped with two Corsi-Rosenthal DIY box fan filters (cost ~₹5,000 total).\n` +
+      `   • Keeps indoor AQI < 50 for elderly residents and children without home air purifiers.\n\n` +
+      `3. **Organize School-Pools & Shared Vanpooling:**\n` +
+      `   • Form 4-family school carpools to eliminate 60+ idling vehicle-minutes outside school gates each morning.\n` +
+      `   • Advocate with school administration to postpone morning sports and outdoor assemblies until after 12:00 PM.\n\n` +
+      `4. **RWA Smog Broadcast System:**\n` +
+      `   • Send daily 7:00 AM WhatsApp advisories notifying residents of current AQI and optimal ventilation windows (12:30 PM - 2:00 PM).`;
+  }
+
   // Question: Commute / Transit / Car / Metro
   if (q.includes('commute') || q.includes('metro') || q.includes('car') || q.includes('bus') || q.includes('traffic')) {
     return `### Smog-Resilient Commuting Strategies\n\n` +

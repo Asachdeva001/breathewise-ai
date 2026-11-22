@@ -6,6 +6,7 @@ import {
   Leaf,
   Bot,
   Award,
+  Users,
 } from 'lucide-react';
 import { Header } from './components/common/Header.js';
 import { Footer } from './components/common/Footer.js';
@@ -14,6 +15,7 @@ import { AqiDashboard } from './features/air-quality/AqiDashboard.js';
 import { DailyRoutineView } from './features/daily-routines/DailyRoutineView.js';
 import { IndoorOptimizerView } from './features/indoor-air/IndoorOptimizerView.js';
 import { SustainabilityAdvisorView } from './features/sustainability/SustainabilityAdvisorView.js';
+import { CommunityActionView } from './features/community/CommunityActionView.js';
 import { ChatAssistantView } from './features/assistant/ChatAssistantView.js';
 import { ImpactTrackerView } from './features/impact-tracker/ImpactTrackerView.js';
 
@@ -23,7 +25,7 @@ import { useRecommendations } from './hooks/useRecommendations.js';
 import { useImpact } from './hooks/useImpact.js';
 import { useChat } from './hooks/useChat.js';
 
-type ActiveTab = 'dashboard' | 'routines' | 'indoor' | 'sustainability' | 'assistant' | 'impact';
+type ActiveTab = 'dashboard' | 'routines' | 'indoor' | 'sustainability' | 'community' | 'assistant' | 'impact';
 
 export const App: React.FC = () => {
   const [activeTab, setActiveTab] = useState<ActiveTab>('dashboard');
@@ -53,8 +55,9 @@ export const App: React.FC = () => {
 
   const navTabs: { id: ActiveTab; label: string; icon: React.FC<{ className?: string }> }[] = [
     { id: 'dashboard', label: 'AQI Intelligence', icon: LayoutDashboard },
-    { id: 'routines', label: 'Daily Routine', icon: CalendarClock },
+    { id: 'routines', label: 'Family Routines', icon: CalendarClock },
     { id: 'indoor', label: 'Indoor Optimizer', icon: Home },
+    { id: 'community', label: 'Community Smog Defense', icon: Users },
     { id: 'sustainability', label: 'Sustainable Living', icon: Leaf },
     { id: 'assistant', label: 'AI Assistant', icon: Bot },
     { id: 'impact', label: 'Impact Tracker', icon: Award },
@@ -170,6 +173,13 @@ export const App: React.FC = () => {
               alternatives={recommendations?.sustainableAlternatives || []}
               defaultDistanceKm={profile?.averageCommuteDistanceKm || 15}
               defaultCommute={profile?.primaryCommute || 'personal_car'}
+              onLogAction={(payload) => logAction(payload)}
+            />
+          )}
+
+          {activeTab === 'community' && (
+            <CommunityActionView
+              communityActions={recommendations?.communityActions || []}
               onLogAction={(payload) => logAction(payload)}
             />
           )}

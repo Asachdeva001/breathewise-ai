@@ -39,8 +39,9 @@ export const ChatAssistantView: React.FC<ChatAssistantViewProps> = ({
   const suggestedPills = latestAssistantMessage?.suggestedFollowups || [
     'Should I go for a morning walk today?',
     'How do I build a low-cost DIY air purifier?',
+    'How can our apartment society or neighborhood tackle winter smog?',
+    'How do I protect my child who has asthma during school hours?',
     'What window hours are safe for home ventilation?',
-    'How should I protect children during peak smog?',
   ];
 
   return (

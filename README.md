@@ -11,23 +11,26 @@
 
 **BreatheWise AI** is an enterprise-grade, privacy-first, GenAI-augmented environmental decision-support system. It is specifically engineered to help families and urban communities navigate severe winter smog and chronic air pollution.
 
-Unlike conventional dashboards that only display passive graphs, BreatheWise AI operates an intelligent **decision-support pipeline** that couples **deterministic environmental science (CPCB Indian NAQI and US-EPA standards)** with **Google Cloud Vertex AI (Gemini 1.5/2.0 Flash)**. This provides explainable 4-slot daily routines, practical low-cost indoor air hacks (such as the open-source Corsi-Rosenthal box filter), sustainable transit alternatives, and transparent environmental impact accounting.
-
-```
-┌────────────────────────────────────────────────────────────────────────┐
-│                          BreatheWise AI Core                           │
-│   • Real-Time Telemetry & CPCB Breakpoint Interpolator                 │
-│   • Diurnal Winter Smog Daily Routine Planner (Morning, Midday, etc.)  │
-│   • Room-by-Room Indoor Hacks & Corsi-Rosenthal DIY Box Fan Builder    │
-│   • Modal Shift Transit Substitution Calculator                        │
-│   • Vertex AI Gemini Grounded Conversational Assistant                 │
-│   • Cumulative Lung Inhalation Dose (µg PM2.5) & CO2e Ledger           │
-└────────────────────────────────────────────────────────────────────────┘
-```
+Unlike conventional dashboards that only display passive graphs, BreatheWise AI operates an intelligent **decision-support pipeline** that couples **deterministic environmental science (CPCB Indian NAQI and US-EPA standards)** with **Google Cloud Vertex AI (Gemini 1.5/2.0 Flash)**. This provides explainable 4-slot daily routines, practical low-cost indoor air hacks (such as the open-source Corsi-Rosenthal box filter), community smog defense blueprints, sustainable transit alternatives, and transparent environmental impact accounting.
 
 ---
 
-## 2. Core Functional Modules
+## 2. Problem Statement Alignment Matrix
+
+| Challenge Requirement | Implementation in BreatheWise AI | Code & Architecture Link |
+| :--- | :--- | :--- |
+| **GenAI-Powered Assistant** | Multi-turn AI assistant powered by Google Cloud Vertex AI (Gemini 1.5 Flash), strictly grounded in verified CPCB telemetry and user profile constraints with zero hallucinated numbers. | `server/services/vertexAiService.ts`, `src/features/assistant/ChatAssistantView.tsx` |
+| **Families Navigation** | Tailors exertion thresholds, mask recommendations, and indoor room protocols to household makeup (infants, asthmatics, pregnant women, elderly). | `server/engine/recommendationRules.ts`, `src/features/onboarding/OnboardingModal.tsx` |
+| **Community Smog Defense** | Action blueprints for apartment societies (RWAs), schools, and neighborhoods: zero-open-burning protocols, clubhouse clean air sanctuaries, and school-pool carpools. | `src/features/community/CommunityActionView.tsx`, `server/engine/recommendationRules.ts` |
+| **Low-Emission Daily Routines** | 4-slot diurnal planner (Morning, Midday, Evening, Night) calibrated to temperature inversion physics; includes interactive "Safe Activity Swaps". | `src/features/daily-routines/DailyRoutineView.tsx`, `server/engine/recommendationRules.ts` |
+| **Indoor Air Quality Hacks** | Open-source Corsi-Rosenthal DIY box filter (>85% PM2.5 removal, 350+ CFM CADR), damp microfiber mopping, kitchen smoke isolation, and NASA biofiltration plants. | `src/features/indoor-air/IndoorOptimizerView.tsx` |
+| **Sustainable Alternatives** | Interactive modal shift calculator comparing personal car vs two-wheeler vs electric metro rail vs CNG buses, with real-time emissions and fuel savings. | `src/features/sustainability/SustainabilityAdvisorView.tsx`, `server/engine/impactEngine.ts` |
+| **Tailored to Location & Lifestyle** | Browser geolocation auto-detection (`navigator.geolocation`), multi-city CPCB support, home sealing levels, and commute habits. | `src/components/common/Header.tsx`, `server/services/aqiService.ts` |
+| **Direct Impact Explanations** | Scientific formulas documenting avoided lung PM2.5 dose ($\mu\text{g}$) and greenhouse emissions ($\text{kg CO}_2\text{e}$) displayed on every routine, hack, and transit choice. | `src/features/impact-tracker/ImpactTrackerView.tsx`, `server/engine/impactEngine.ts` |
+
+---
+
+## 3. Core Functional Modules
 
 ### Module A — Air Quality Intelligence Engine
 - Ingests hourly ambient concentrations for $\text{PM}_{2.5}$, $\text{PM}_{10}$, $\text{NO}_2$, $\text{SO}_2$, $\text{CO}$, and $\text{O}_3$ via Open-Meteo Air Quality API.
@@ -200,7 +203,7 @@ Default configuration runs out-of-the-box with `FIRESTORE_MODE=memory` and local
 ```bash
 npm test
 ```
-Executes all 29 automated unit and integration tests across CPCB formulas, impact math, recommendation rules, API routes, and React components.
+Executes all 60 automated unit and integration tests across CPCB formulas, impact math, recommendation rules, API routes, Zod schemas, error hierarchies, and React components.
 
 ### 4. Build Production Bundle
 ```bash
