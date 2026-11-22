@@ -1,5 +1,5 @@
 import React from 'react';
-import { Home, Sparkles, Fan, Droplets, Flame, CheckCircle } from 'lucide-react';
+import { Home, Sparkles, Fan, Droplets, Flame, CheckCircle, Leaf } from 'lucide-react';
 import { IndoorHack } from '../../../shared/types.js';
 
 interface IndoorOptimizerViewProps {
@@ -11,17 +11,16 @@ export const IndoorOptimizerView: React.FC<IndoorOptimizerViewProps> = ({
   indoorHacks,
   onLogAction,
 }) => {
-
   const getCategoryIcon = (cat: string) => {
     switch (cat) {
       case 'purification':
-        return <Fan className="w-4 h-4 text-emerald-600" />;
+        return <Fan className="w-4 h-4 text-emerald-600" aria-hidden="true" />;
       case 'cleaning':
-        return <Droplets className="w-4 h-4 text-blue-600" />;
+        return <Droplets className="w-4 h-4 text-blue-600" aria-hidden="true" />;
       case 'cooking':
-        return <Flame className="w-4 h-4 text-amber-600" />;
+        return <Flame className="w-4 h-4 text-amber-600" aria-hidden="true" />;
       default:
-        return <Home className="w-4 h-4 text-purple-600" />;
+        return <Home className="w-4 h-4 text-purple-600" aria-hidden="true" />;
     }
   };
 
@@ -31,7 +30,7 @@ export const IndoorOptimizerView: React.FC<IndoorOptimizerViewProps> = ({
       <div className="bg-gradient-to-br from-emerald-900 via-teal-900 to-slate-900 text-white rounded-3xl p-6 sm:p-8 shadow-lg">
         <div className="max-w-3xl space-y-3">
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-400/30 text-xs font-bold uppercase tracking-wider">
-            <Sparkles className="w-3.5 h-3.5" /> High-Efficiency Indoor Sanctuary Hacks
+            <Sparkles className="w-3.5 h-3.5" aria-hidden="true" /> High-Efficiency Indoor Sanctuary Hacks
           </div>
           <h2 className="text-xl sm:text-2xl font-black text-white">
             Indoor Air Quality Optimization & Low-Cost Hacks
@@ -61,12 +60,12 @@ export const IndoorOptimizerView: React.FC<IndoorOptimizerViewProps> = ({
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
               <div className="bg-slate-50 p-3 rounded-xl border border-slate-200 text-xs">
-                <span className="font-bold text-slate-800 block mb-1">Required Materials:</span>
+                <span className="font-bold text-slate-800 block mb-1">Bill of Materials (BOM ~₹2,200):</span>
                 <ul className="text-slate-600 space-y-1 list-disc list-inside">
-                  <li>One 20-inch box fan</li>
-                  <li>Four MERV-13 pleated air filters (20"×20")</li>
-                  <li>One roll of heavy duct tape</li>
-                  <li>Cardboard bottom shroud</li>
+                  <li>One 20-inch box fan (₹1,200)</li>
+                  <li>Four MERV-13 pleated filters (20"×20", ₹800)</li>
+                  <li>One roll heavy duct tape (₹150)</li>
+                  <li>Cardboard bottom shroud (₹50)</li>
                 </ul>
               </div>
 
@@ -100,6 +99,42 @@ export const IndoorOptimizerView: React.FC<IndoorOptimizerViewProps> = ({
             >
               Log DIY Purifier Usage
             </button>
+          </div>
+        </div>
+      </div>
+
+      {/* NASA Clean Air Study Phytoremediation Plants */}
+      <div className="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm">
+        <div className="flex items-center gap-2 mb-3">
+          <Leaf className="w-5 h-5 text-emerald-600" aria-hidden="true" />
+          <h3 className="text-base font-extrabold text-slate-900">
+            NASA Clean Air Study — Natural Indoor Biofiltration Plants
+          </h3>
+        </div>
+        <p className="text-xs text-slate-600 mb-4 leading-relaxed">
+          Based on the landmark NASA Clean Air Study and Paharpur Business Centre (New Delhi) research, maintaining 3 to 4 specific potted plants per person dramatically reduces indoor VOCs, formaldehyde, and secondary fine particulates:
+        </p>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
+          <div className="bg-emerald-50/50 border border-emerald-100 rounded-2xl p-4">
+            <span className="font-bold text-emerald-900 block text-sm">Snake Plant (Sansevieria)</span>
+            <span className="text-[11px] text-emerald-700 font-mono block mb-2">Bedroom Plant</span>
+            <p className="text-slate-600 leading-relaxed">
+              Uses Crassulacean Acid Metabolism (CAM) to produce oxygen at night and filter formaldehyde, benzene, and trichloroethylene.
+            </p>
+          </div>
+          <div className="bg-teal-50/50 border border-teal-100 rounded-2xl p-4">
+            <span className="font-bold text-teal-900 block text-sm">Areca Palm (Dypsis Lutescens)</span>
+            <span className="text-[11px] text-teal-700 font-mono block mb-2">Living Room Plant</span>
+            <p className="text-slate-600 leading-relaxed">
+              Acts as a natural humidifier during dry smoggy winters and removes xylene and toluene from indoor synthetic materials.
+            </p>
+          </div>
+          <div className="bg-slate-50 border border-slate-200 rounded-2xl p-4">
+            <span className="font-bold text-slate-900 block text-sm">Money Plant (Epipremnum)</span>
+            <span className="text-[11px] text-slate-600 font-mono block mb-2">Workstation / Balcony Entry</span>
+            <p className="text-slate-600 leading-relaxed">
+              High surface area leaves attract and trap airborne particulate matter (PM10) that enters through door thresholds.
+            </p>
           </div>
         </div>
       </div>
@@ -148,7 +183,7 @@ export const IndoorOptimizerView: React.FC<IndoorOptimizerViewProps> = ({
                   <ul className="space-y-1">
                     {hack.instructions.map((step, idx) => (
                       <li key={idx} className="text-xs text-slate-700 flex items-start gap-2">
-                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 mt-1.5 shrink-0" />
+                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 mt-1.5 shrink-0" aria-hidden="true" />
                         <span>{step}</span>
                       </li>
                     ))}
@@ -171,7 +206,7 @@ export const IndoorOptimizerView: React.FC<IndoorOptimizerViewProps> = ({
                 }
                 className="w-full py-2 px-3 text-xs font-bold text-emerald-800 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 rounded-xl flex items-center justify-center gap-1.5 transition-colors"
               >
-                <CheckCircle className="w-3.5 h-3.5 text-emerald-600" />
+                <CheckCircle className="w-3.5 h-3.5 text-emerald-600" aria-hidden="true" />
                 <span>I Did This Hack Today</span>
               </button>
             </div>

@@ -14,8 +14,8 @@ export function useRecommendations(telemetry: AqiTelemetry | null, profile: User
     try {
       const data = await fetchRecommendationsApi(telemetry, profile);
       setRecommendations(data);
-    } catch (err: any) {
-      setError(err.message || 'Failed to generate recommendations');
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : 'Failed to generate recommendations');
     } finally {
       setLoading(false);
     }

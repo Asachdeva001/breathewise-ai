@@ -24,6 +24,8 @@ export const CITY_COORDINATES: Record<string, { lat: number; lon: number; countr
   kolkata: { lat: 22.5726, lon: 88.3639, country: 'India' },
   chennai: { lat: 13.0827, lon: 80.2707, country: 'India' },
   hyderabad: { lat: 17.385, lon: 78.4867, country: 'India' },
+  pune: { lat: 18.5204, lon: 73.8567, country: 'India' },
+  ahmedabad: { lat: 23.0225, lon: 72.5714, country: 'India' },
   lucknow: { lat: 26.8467, lon: 80.9462, country: 'India' },
   patna: { lat: 25.5941, lon: 85.1376, country: 'India' },
   lahore: { lat: 31.5204, lon: 74.3587, country: 'Pakistan' },
@@ -84,6 +86,20 @@ export const DEMO_SCENARIOS: Record<string, { name: string; pollutants: Pollutan
   },
 };
 
+interface OpenMeteoApiResponse {
+  latitude?: number;
+  longitude?: number;
+  current?: {
+    time?: string;
+    pm10?: number;
+    pm2_5?: number;
+    carbon_monoxide?: number;
+    nitrogen_dioxide?: number;
+    sulphur_dioxide?: number;
+    ozone?: number;
+  };
+}
+
 export async function fetchAirQuality(
   cityQuery: string,
   forceDemo: boolean = false,
@@ -136,7 +152,7 @@ export async function fetchAirQuality(
       throw new Error(`Open-Meteo API returned status ${response.status}`);
     }
 
-    const data = (await response.json()) as any;
+    const data = (await response.json()) as OpenMeteoApiResponse;
     const current = data.current || {};
 
     const pollutants: PollutantValues = {

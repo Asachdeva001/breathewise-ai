@@ -78,7 +78,7 @@ export const App: React.FC = () => {
       />
 
       {/* Main Content Area */}
-      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+      <main id="main-content" tabIndex={-1} className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6 focus:outline-hidden">
         {/* Navigation Bar Tabs */}
         <div
           className="flex items-center gap-1.5 overflow-x-auto no-scrollbar p-1.5 bg-white border border-slate-200/80 rounded-2xl shadow-2xs"

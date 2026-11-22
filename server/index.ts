@@ -16,13 +16,52 @@ const __dirname = path.dirname(__filename);
 export function createApp() {
   const app = express();
 
-  // Security Middleware
+  // Security Middleware: Hardened Helmet & CSP Headers
   app.use(
     helmet({
-      contentSecurityPolicy: false, // Allows Vite inline styles & fonts in dev/prod
+      contentSecurityPolicy: {
+        directives: {
+          defaultSrc: ["'self'"],
+          scriptSrc: ["'self'", "'unsafe-inline'"],
+          styleSrc: ["'self'", "'unsafe-inline'", 'https://fonts.googleapis.com'],
+          fontSrc: ["'self'", 'https://fonts.gstatic.com', 'data:'],
+          imgSrc: ["'self'", 'data:', 'https:'],
+          connectSrc: [
+            "'self'",
+            'https://air-quality-api.open-meteo.com',
+            'https://geocoding-api.open-meteo.com',
+          ],
+          objectSrc: ["'none'"],
+          upgradeInsecureRequests: process.env.NODE_ENV === 'production' ? [] : null,
+        },
+      },
       crossOriginEmbedderPolicy: false,
+      crossOriginResourcePolicy: { policy: 'cross-origin' },
+      referrerPolicy: { policy: 'strict-origin-when-cross-origin' },
+      xContentTypeOptions: true,
+      xDnsPrefetchControl: { allow: false },
+      xFrameOptions: { action: 'sameorigin' },
     })
   );
+
+  // Prototype Pollution & Injection Guard
+  app.use((req, _res, next) => {
+    const sanitize = (obj: unknown): void => {
+      if (obj && typeof obj === 'object') {
+        for (const key of Object.keys(obj as Record<string, unknown>)) {
+          if (key === '__proto__' || key === 'constructor' || key === 'prototype') {
+            delete (obj as Record<string, unknown>)[key];
+          } else {
+            sanitize((obj as Record<string, unknown>)[key]);
+          }
+        }
+      }
+    };
+    sanitize(req.body);
+    sanitize(req.query);
+    sanitize(req.params);
+    next();
+  });
 
   app.use(
     cors({

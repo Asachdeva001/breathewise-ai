@@ -53,8 +53,9 @@ Ask me any question below or tap a suggested prompt!`,
 
         setConversationId(res.conversationId);
         setMessages((prev) => [...prev, res.message]);
-      } catch (err: any) {
-        setError(err.message || 'Failed to receive response');
+      } catch (err: unknown) {
+        const message = err instanceof Error ? err.message : 'Failed to receive response';
+        setError(message);
         setMessages((prev) => [
           ...prev,
           {

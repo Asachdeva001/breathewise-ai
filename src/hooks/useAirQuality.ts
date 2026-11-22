@@ -16,8 +16,8 @@ export function useAirQuality(initialCity: string = 'New Delhi') {
     try {
       const data = await fetchAirQualityApi(city, isDemo, isDemo ? scenario : undefined);
       setTelemetry(data);
-    } catch (err: any) {
-      setError(err.message || 'Failed to retrieve air quality data');
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : 'Failed to retrieve air quality data');
     } finally {
       setLoading(false);
     }

@@ -139,12 +139,24 @@ describe('Frontend App Shell Integration Tests', () => {
   it('allows tab switching between application views', async () => {
     render(<App />);
 
+    await waitFor(() => {
+      expect(screen.getAllByRole('heading', { level: 1 })[0]).toBeInTheDocument();
+    });
+
     const indoorTab = screen.getByRole('tab', { name: /Indoor Optimizer/i });
     fireEvent.click(indoorTab);
     expect(indoorTab).toHaveAttribute('aria-selected', 'true');
 
+    await waitFor(() => {
+      expect(screen.getByText(/Corsi-Rosenthal Box Filter/i)).toBeInTheDocument();
+    });
+
     const impactTab = screen.getByRole('tab', { name: /Impact Tracker/i });
     fireEvent.click(impactTab);
     expect(impactTab).toHaveAttribute('aria-selected', 'true');
+
+    await waitFor(() => {
+      expect(screen.getByRole('tab', { name: /Impact Tracker/i })).toHaveAttribute('aria-selected', 'true');
+    });
   });
 });
